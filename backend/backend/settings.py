@@ -1,5 +1,6 @@
-from pathlib import Path
 import os
+from pathlib import Path
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -71,15 +72,6 @@ DATABASES = {
         'PORT': os.getenv('DB_PORT', 5432)
     }
 }
-
-
-
-#DATABASES = {
-    #'default': {
-       # 'ENGINE': 'django.db.backends.sqlite3',
-        #'NAME': BASE_DIR / 'db.sqlite3',
-   # }
-#docker exec taski_backend_container python manage.py migrate}
 
 
 # Password validation
