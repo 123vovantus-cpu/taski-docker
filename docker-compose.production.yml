@@ -21,7 +21,7 @@ services:
   backend:
     # Из какого Dockerfile собирать образ для этого контейнера:
     # build: ./backend/
-    image: babybeardocker/taski_backend
+    image: vladimirradk/taski_backend
     env_file: .env
     # Какие контейнеры нужно запустить до старта этого контейнера:
     depends_on:
@@ -31,7 +31,7 @@ services:
   # Имя третьего контейнера. Это контейнер с фронтендом
   frontend:
     # build: ./frontend/
-    image: babybeardocker/taski_frontend
+    image: vladimirradk/taski_frontend
     command: cp -r /app/build/. /frontend_static/
     volumes:
       - static:/frontend_static
@@ -39,7 +39,7 @@ services:
     # Сбилдить и запустить образ, 
     # описанный в Dockerfile в папке gateway
     #build: ./gateway/
-    image: babybeardocker/taski_gateway
+    image: vladimirradk/taski_gateway
     # Ключ ports устанавливает
     # перенаправление всех запросов с порта 8000 хоста
     # на порт 80 контейнера
