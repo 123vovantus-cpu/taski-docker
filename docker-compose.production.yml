@@ -17,6 +17,7 @@ services:
     # Какой volume подключить для этого контейнера
     volumes:
       - pg_data:/var/lib/postgresql/data
+    restart: always
   # Имя и описание контейнера с бэкендом
   backend:
     # Из какого Dockerfile собирать образ для этого контейнера:
@@ -29,12 +30,14 @@ services:
     volumes:
       - static:/backend_static
   # Имя третьего контейнера. Это контейнер с фронтендом
+    restart: always
   frontend:
     # build: ./frontend/
     image: vladimirradk/taski_frontend
     command: cp -r /app/build/. /frontend_static/
     volumes:
       - static:/frontend_static
+    restart: always
   gateway:
     # Сбилдить и запустить образ, 
     # описанный в Dockerfile в папке gateway
@@ -47,3 +50,6 @@ services:
       - 8000:80
     volumes:
       - static:/staticfiles/
+    depends_on:
+      - backend
+    restart: always
